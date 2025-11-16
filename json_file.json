@@ -1,0 +1,13 @@
+{
+  "nombre": "Joa",
+  "edad": 18,
+  "altura":1.80,
+  "activo": false,
+  "direccion":null,
+  "skills": ["python", "bash", "java"],
+  "proyectos": [
+    { "id": 1, "titulo": "Parser JSON", "completo": false },
+    { "id": 2, "titulo": "Sistema de stock", "completo": true }
+  ]
+}
+

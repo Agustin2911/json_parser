@@ -1,0 +1,8 @@
+{
+    "meta"   :   null,
+    "temperaturas": [ 10, -5, 0,  22 ],
+    "mensaje": "Hola     mundo   ",
+    "valido": false,
+    "datos": {     "vacio": { } }
+}
+
