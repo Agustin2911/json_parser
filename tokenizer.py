@@ -10,30 +10,31 @@ class tokenizer:
 
     def tokenizer(self,path):   
         
+        self.tokens.clear()
         open_value=""
         
         with open(path,"r",encoding="utf-8") as open_file:
             
             for row in open_file:
 
-                for char in row:
+                for char in range(0,len(row)):
                     
 
                     # detects if the char is the beginning of string or an integer or a float
-                    if char=='"':
-
+                    if row[char]=='"' and row[char-1]!="\\" :
+                        
                         self.open_quotes=not self.open_quotes
                         
                         if not self.open_quotes:
                             self.tokens.append(["string",open_value])
                             open_value=""
                     
-                    elif char in ["1","2","3","4","5","6","7","8","9","0"]:
+                    elif row[char] in ["1","2","3","4","5","6","7","8","9","0","-"] and not self.open_quotes:
 
                             self.open_int= True
                              
 
-                    elif char not in ["1","2","3","4","5","6","7","8","9","0","."] and self.open_int:
+                    elif  row[char] not in ["1","2","3","4","5","6","7","8","9","0","."] and self.open_int:
                             
                             self.open_int=False
                             if "." in open_value:
@@ -44,60 +45,57 @@ class tokenizer:
 
                             open_value=""
 
-                    elif char=="f" or char=="t" and not self.open_quotes:
-                        
+                    elif  (row[char] =="f" or row[char] =="t" )and not self.open_quotes :
+                        print(row[char])
+                        print(not self.open_quotes)
                         self.open_boolean=True
 
                      
 
-                    elif self.open_boolean and char=="e":
+                    elif self.open_boolean and row[char]=="e":
+                        
 
+                        print(f"char: {row[char]}  , state string: {self.open_quotes} , state int: {self.open_int},state boolean: {self.open_boolean} ,state null : {self.open_null}")
                         self.open_boolean=False
 
-                        open_value+=char
+                        open_value+=row[char]
 
                         self.tokens.append(["boolean",open_value])
                         
                         open_value=""
                     
-                    elif not self.open_quotes and char=="n":
+                    elif not self.open_quotes and row[char]=="n":
                         self.open_null=True
                     
-                    elif self.open_null and char=="l":
-
-                        self.open_null=False
-                        self.tokens.append(["null",open_value+"ll"])
+                    elif self.open_null and row[char]=="l":
+        
+                        self.open_null=False 
+                        open_value+="ll"
+                        self.tokens.append(["null",open_value])
                         open_value="" 
                     
-
                     #this part looks for simbols
                     if not self.open_quotes and not self.open_int and not self.open_boolean and not self.open_null:
                     
-                        if char=="[" or char=="]" or char=="{" or  char=="}":
+                        if row[char]=="[" or row[char]=="]" or row[char]=="{" or  row[char]=="}":
 
-                            self.tokens.append(["simbol",char])
+                            self.tokens.append(["simbol",row[char]])
                         
-                        elif char==":" or char==",":
-                            self.tokens.append(["separation_sign",char])
+                        elif row[char]==":" or row[char]==",":
+                            self.tokens.append(["separation_sign",row[char]])
 
                     #this part saves and builds the string and the int 
-                    elif char!='"':
-                        open_value+=char
+                    elif row[char]!='"' and row[char-1]!="\\":
+                        open_value+=row[char]
                     
+                    elif  row[char]=='"' and row[char-1]=="\\" :
+                        open_value=open_value[:-1]
+                        open_value+=row[char]
 
 
+                    elif row[char]=="n" and row[char-1]=="\\":
+                        open_value=open_value[:-1]
+                        open_value+="\n"
         
-        print(self.tokens)     
-        
-        self.tokens.clear()
 
-parser=tokenizer()
-parser.tokenizer("json_file.json")
-
-print()
-parser.tokenizer("json_file2.json")
-
-print()
-parser.tokenizer("json_file3.json")
-print()
-parser.tokenizer("json_file4.json")
+        return self.tokens

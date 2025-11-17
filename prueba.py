@@ -1,4 +1,5 @@
-arch=open("json_file.json","r")
+from tokenizer import  tokenizer
 
-for i in arch:
-    print(i)
+
+token=tokenizer()
+token.tokenizer("data/json_file3.json")
