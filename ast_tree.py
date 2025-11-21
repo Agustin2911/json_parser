@@ -16,6 +16,16 @@ class ast:
         pointer=self.root
         
         for value in tokens:
+            print(value)
+            #borrar
+            if value[1]=="}":
+                print(pointer.type)
+            elif value[1]=="]":
+                print(pointer.type)
+                print(pointer.type=="array" and value[1]=="]")
+
+
+
             if value[1]=="{":
             
                 token_value=object_node()
@@ -23,16 +33,16 @@ class ast:
             elif value[1]=="[":
                 token_value=array_node()
 
-            elif value[0]=="null" or value[0]=="string" or value[0]=="int" or value[0]=="boolean":
+            elif value[0]=="null" or value[0]=="string" or value[0]=="int" or value[0]=="boolean" or value[0]=="float":
                 inserted=True
                 token_value=leaf(value[0],value[1])
-
+            
             
             if self.root==None:
                 self.root=token_value
                 pointer=self.root
 
-            elif (token_value.type=="array" or token_value.type=="object"):
+            elif (token_value.type=="array" and value[1]=="[") or (token_value.type=="object" and value[1]=="{"):
                 
 
                 token_value.setFather(pointer)
@@ -41,27 +51,29 @@ class ast:
                     pointer.add(token_value)
                 
                 elif pointer.type=="object":
-                    print(object_tokens[0].value)
                     pointer.add(object_tokens[0],token_value)
                     object_tokens=[]
 
                 pointer=token_value
-
+            
             elif pointer.type=="array" and value[1]=="]":
+                print("salio de la lista")
                 pointer=pointer.father
             
         
             elif pointer.type=="object" and value[1]=="}" and pointer.father!=None:
+                print("salio")
                 pointer=pointer.father
 
 
             elif pointer.type=="array" and value[0] =="simbol" and (value[1]=="}"):
+
                 raise Exception(f"wrong syntaxs {value[1]} pointer type: {pointer.type}")
 
             elif pointer.type=="object" and value[0] =="simbol" and (value[1]=="]"):
                 raise Exception(f"wrong syntaxs {value[1]} pointer type: {pointer.type}")
 
-            elif pointer.type=="array" and (token_value.type=="boolean" or token_value.type=="null" or token_value.type=="string" or token_value.type=="int") and inserted==True:
+            elif pointer.type=="array" and (token_value.type=="float" or token_value.type=="boolean" or token_value.type=="null" or token_value.type=="string" or token_value.type=="int") and inserted==True:
     
                 pointer.add(token_value)
                 inserted=False
@@ -145,7 +157,6 @@ class ast:
                 return None
 
         except Exception as e:
-            print(e)
             raise Exception("error at convertin a token to the right data type")
 
     def add_data_to_the_dict_from_a_list(self,list_of_tokens):
@@ -169,16 +180,12 @@ class ast:
     def add_data_to_the_dict_from_a_object(self,dict_of_tokens):
         dict={} 
         for i,y in dict_of_tokens.items():
-            print(i.type)
-            print(y.type)
             if i.type!="string":
                 
                 raise Exception(f"Error at the syntaxis of the json file , a key it cant not be a {i.type}")
             
             if y.type=="object":
                 
-                print(i.value)
-                print(len(y.nodes))
                 key_value=self.convert_the_token_to_the_correct_data_type(i)
 
                 child_dict=self.add_data_to_the_dict_from_a_object(y.nodes)
@@ -197,5 +204,4 @@ class ast:
                 value=self.convert_the_token_to_the_correct_data_type(y)
                 dict[key]=value
         
-        print(dict)
         return dict
