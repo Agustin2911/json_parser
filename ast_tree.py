@@ -1,3 +1,4 @@
+from pytest import raises
 from array_node import array_node
 from object_node import object_node
 from leaf import leaf
@@ -37,6 +38,8 @@ class ast:
                 inserted=True
                 token_value=leaf(value[0],value[1])
             
+            elif value[1]==",":
+                token_value=leaf(value[0],value[1])
             
             if self.root==None:
                 self.root=token_value
@@ -57,12 +60,16 @@ class ast:
                 pointer=token_value
             
             elif pointer.type=="array" and value[1]=="]":
-                print("salio de la lista")
+                if token_value.type=="separation_sign":
+                    raise Exception("error in the syntax of the json file")
                 pointer=pointer.father
             
         
-            elif pointer.type=="object" and value[1]=="}" and pointer.father!=None:
-                print("salio")
+            elif pointer.type=="object" and value[1]=="}":# and pointer.father!=None:
+
+                if token_value.type=="separation_sign":
+                    raise Exception("error in the syntax of the json file")
+                print(token_value.type)
                 pointer=pointer.father
 
 

@@ -2,6 +2,7 @@ import json
 import pytest
 from tokenizer import tokenizer
 from ast_tree import ast
+
 JSON_FILES = [
     "data/json_file1.json",
     "data/json_file2.json",
@@ -11,15 +12,22 @@ JSON_FILES = [
     "data/json_file6.json",
     "data/json_file7.json",
     "data/json_file8.json",
+
+    "data/json_file9.json",
+    "data/json_file10.json",
+    "data/json_file11.json",
+    "data/json_file12.json",
+    "data/json_file13.json",
+    "data/json_file14.json",
+    "data/json_file15.json",
+    "data/json_file16.json",
 ]
 
 @pytest.mark.parametrize("path", JSON_FILES)
 def test_full_parser(path):
-    # Cargar JSON real con json.load()
     with open(path, "r", encoding="utf-8") as f:
         expected = json.load(f)
 
-    # Tu flujo real: tokenizer → AST → dict
     tk = tokenizer()
     tokens = tk.tokenizer(path)
 
@@ -27,5 +35,29 @@ def test_full_parser(path):
     tree.add(tokens)
     result = tree.convert_tree_to_dict()
 
-    assert result == expected, f"Fallo en {path}"
+    assert result == expected, f"❌ Fallo en {path}"
+
+
+
+INVALID_JSON_FILES = [
+    "data/invalid_json1.json",
+    "data/invalid_json2.json",
+    "data/invalid_json3.json",
+    "data/invalid_json4.json",
+    "data/invalid_json5.json",
+    "data/invalid_json6.json",
+    "data/invalid_json7.json",
+    "data/invalid_json8.json",
+]
+
+
+@pytest.mark.parametrize("path", INVALID_JSON_FILES)
+def test_invalid_json(path):
+    tk = tokenizer()
+
+    with pytest.raises(Exception):
+        tokens = tk.tokenizer(path)
+        tree = ast()
+        tree.add(tokens)
+        tree.convert_tree_to_dict()
 

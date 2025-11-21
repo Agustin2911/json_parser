@@ -1,0 +1,12 @@
+{
+  "ciudades": [
+    "Buenos Aires",
+    "Córdoba",
+    "Rosario",
+    "Mendoza",
+    "La Plata"
+  ],
+  "poblaciones": [3000000, 1400000, 1200000, 1100000, 900000],
+  "porcentaje_urbanizacion": 0.92
+}
+

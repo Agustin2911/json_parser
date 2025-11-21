@@ -52,14 +52,13 @@ class tokenizer:
 
                      
 
-                    elif self.open_boolean and row[char]=="e":
+                    elif self.open_boolean and (open_value+row[char]=="true" or open_value+row[char]=="false"):#row[char]=="e":
                         
 
-                        print(f"char: {row[char]}  , state string: {self.open_quotes} , state int: {self.open_int},state boolean: {self.open_boolean} ,state null : {self.open_null}")
                         self.open_boolean=False
 
                         open_value+=row[char]
-
+                        
                         self.tokens.append(["boolean",open_value])
                         
                         open_value=""
@@ -67,11 +66,10 @@ class tokenizer:
                     elif not self.open_quotes and row[char]=="n":
                         self.open_null=True
                     
-                    elif self.open_null and row[char]=="l":
+                    elif self.open_null and open_value+row[char]=="null":
         
                         self.open_null=False 
-                        open_value+="ll"
-                        self.tokens.append(["null",open_value])
+                        self.tokens.append(["null","null"])
                         open_value="" 
                     
                     #this part looks for simbols
