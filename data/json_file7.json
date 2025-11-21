@@ -1,0 +1,15 @@
+{
+  "configuracion": {
+    "pantalla": {
+      "brillo": 80,
+      "contraste": 50,
+      "resolucion": "1920x1080"
+    },
+    "audio": {
+      "volumen": 70,
+      "mute": false
+    }
+  },
+  "usuario": "agustin"
+}
+

@@ -1,0 +1,16 @@
+{
+  "juegos": [
+    {
+      "titulo": "Elden Ring",
+      "anio": 2022,
+      "dlcs": ["Shadow of the Erdtree"]
+    },
+    {
+      "titulo": "Dark Souls 3",
+      "anio": 2016,
+      "dlcs": ["Ashes of Ariandel", "The Ringed City"]
+    }
+  ],
+  "plataforma": "Steam"
+}
+

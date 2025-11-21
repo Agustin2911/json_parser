@@ -1,7 +1,12 @@
 {
-  "nombre": "Joa",
-  "edad": 21,
-  "activo": true,
-  "puntaje": 9.5
+  "productos": [
+    {"id": 1, "nombre": "Zapatilla A", "precio": 19.5},
+    {"id": 2, "nombre": "Zapatilla B", "precio": 25.0},
+    {"id": 3, "nombre": "Zapatilla C", "precio": 30.75}
+  ],
+  "metadata": {
+    "creado_por": "sistema",
+    "fecha": "2025-01-14"
+  }
 }
 

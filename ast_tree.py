@@ -14,7 +14,7 @@ class ast:
         token_value=""
         inserted=False 
         pointer=self.root
-
+        
         for value in tokens:
             if value[1]=="{":
             
@@ -41,7 +41,8 @@ class ast:
                     pointer.add(token_value)
                 
                 elif pointer.type=="object":
-                    self.root.add(object_tokens[0],token_value)
+                    print(object_tokens[0].value)
+                    pointer.add(object_tokens[0],token_value)
                     object_tokens=[]
 
                 pointer=token_value
@@ -67,7 +68,7 @@ class ast:
 
 
                         
-            if pointer.type=="object" and inserted:
+            elif pointer.type=="object" and inserted:
 
                 if len(object_tokens)==0:
                     object_tokens.append(token_value)
@@ -78,10 +79,12 @@ class ast:
                     object_tokens=[]
                 
                 inserted=False
-        
-        if (pointer.type=="object" and value[1]!="}" )or (pointer.type=="array" and value[1]!="]"):
-            raise Exception("Syntaxs error , json has never been closed")
 
+        try:     
+            if (pointer.type=="object" and value[1]!="}" )or (pointer.type=="array" and value[1]!="]"):
+                raise Exception("Syntaxs error , json has never been closed")
+        except AttributeError as e:
+            pass
     def print(self):
 
         if self.root.type=="array":
@@ -93,7 +96,7 @@ class ast:
 
         for i in list:
             
-            if i.type=="int":
+            if i.type in ["int","string","boolean","null","float"]:
                 print(i.value)
 
             elif  i.type=="array":
@@ -159,21 +162,23 @@ class ast:
             
             elif i.type=="object":
                list.append(self.add_data_to_the_dict_from_a_object(i.nodes))
-
+        
         return list
 
 
     def add_data_to_the_dict_from_a_object(self,dict_of_tokens):
         dict={} 
         for i,y in dict_of_tokens.items():
-
-
+            print(i.type)
+            print(y.type)
             if i.type!="string":
                 
                 raise Exception(f"Error at the syntaxis of the json file , a key it cant not be a {i.type}")
             
             if y.type=="object":
                 
+                print(i.value)
+                print(len(y.nodes))
                 key_value=self.convert_the_token_to_the_correct_data_type(i)
 
                 child_dict=self.add_data_to_the_dict_from_a_object(y.nodes)
@@ -181,8 +186,6 @@ class ast:
                 dict[key_value]=child_dict
 
             elif y.type=="array":
-
-
                 key_value=self.convert_the_token_to_the_correct_data_type(i)
 
                 child_dict=self.add_data_to_the_dict_from_a_list(y.nodes)
@@ -190,9 +193,9 @@ class ast:
                 dict[key_value]=child_dict
             else:
                 
-
                 key=self.convert_the_token_to_the_correct_data_type(i)
                 value=self.convert_the_token_to_the_correct_data_type(y)
                 dict[key]=value
-                
+        
+        print(dict)
         return dict

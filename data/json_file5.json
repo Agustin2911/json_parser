@@ -1,0 +1,9 @@
+{
+  "historial": {
+    "ingresos": [1200, 1300, 1100, 1450, 1500],
+    "egresos": [800, 850, 900, 950, 1000]
+  },
+  "mes": "enero",
+  "cerrado": false
+}
+
