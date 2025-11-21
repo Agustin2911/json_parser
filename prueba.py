@@ -1,7 +1,9 @@
 from tokenizer import  tokenizer
 from ast_tree import ast
 token=tokenizer()
-tokens=token.tokenizer("data/invalid_json8.json")
+#tokens=token.tokenizer("data/invalid_json8.json")
+
+tokens=token.tokenizer("data/json_file8.json")
 print(tokens)
 print()
 print()

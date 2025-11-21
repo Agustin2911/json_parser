@@ -14,17 +14,12 @@ class ast:
         object_tokens=[]
         token_value=""
         inserted=False 
+        #borrar
+        waiting_for_a_separation=False
         pointer=self.root
         
         for value in tokens:
             print(value)
-            #borrar
-            if value[1]=="}":
-                print(pointer.type)
-            elif value[1]=="]":
-                print(pointer.type)
-                print(pointer.type=="array" and value[1]=="]")
-
 
 
             if value[1]=="{":
@@ -33,13 +28,25 @@ class ast:
             
             elif value[1]=="[":
                 token_value=array_node()
+    
 
-            elif value[0]=="null" or value[0]=="string" or value[0]=="int" or value[0]=="boolean" or value[0]=="float":
+            #cambio en el elif , agregue kla ultima condicion
+            elif value[0]=="null" or value[0]=="string" or value[0]=="int" or value[0]=="boolean" or value[0]=="float" or value[1]==":":
                 inserted=True
                 token_value=leaf(value[0],value[1])
             
-            elif value[1]==",":
+            elif value[1]=="," :
                 token_value=leaf(value[0],value[1])
+           
+            if (value[1]!="," and value[1]!="}") and waiting_for_a_separation:
+                print("entro al error")
+                raise Exception("error in the syntax of the file")
+            
+            elif (value[1]=="," or value[1]=="}") and waiting_for_a_separation:
+                print("se soluciono el waiting")
+                waiting_for_a_separation=False
+
+
             
             if self.root==None:
                 self.root=token_value
@@ -92,12 +99,20 @@ class ast:
                 if len(object_tokens)==0:
                     object_tokens.append(token_value)
 
-                elif len(object_tokens)==1 :
+                elif len(object_tokens)==1:
+                    if token_value.value!=":":
+                        raise Exception("error in the syntax of the file")
                     object_tokens.append(token_value)
-                    pointer.add(object_tokens[0],object_tokens[1])
+                elif len(object_tokens)==2:
+                    object_tokens.append(token_value)
+                    pointer.add(object_tokens[0],object_tokens[2])
                     object_tokens=[]
-                
+                    waiting_for_a_separation=True
+
                 inserted=False
+            
+
+            
 
         try:     
             if (pointer.type=="object" and value[1]!="}" )or (pointer.type=="array" and value[1]!="]"):

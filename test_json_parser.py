@@ -48,6 +48,18 @@ INVALID_JSON_FILES = [
     "data/invalid_json6.json",
     "data/invalid_json7.json",
     "data/invalid_json8.json",
+    "data/invalid_json9.json",
+    "data/invalid_json10.json",
+    "data/invalid_json11.json",
+    "data/invalid_json12.json",
+    "data/invalid_json13.json",
+    "data/invalid_json14.json",
+    "data/invalid_json15.json",
+    "data/invalid_json16.json",
+    "data/invalid_json17.json",
+    "data/invalid_json18.json",
+    "data/invalid_json19.json",
+    "data/invalid_json20.json",
 ]
 
 
