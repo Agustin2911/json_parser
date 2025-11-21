@@ -36,6 +36,10 @@ class ast:
                 token_value=leaf(value[0],value[1])
             
             elif value[1]=="," :
+
+                if pointer.type=="array" and len(pointer.nodes)==0:
+                    raise Exception("error in the syntax of the file")
+
                 token_value=leaf(value[0],value[1])
            
             if (value[1]!="," and value[1]!="}") and waiting_for_a_separation:
@@ -43,6 +47,11 @@ class ast:
                 raise Exception("error in the syntax of the file")
             
             elif (value[1]=="," or value[1]=="}") and waiting_for_a_separation:
+                
+                if pointer.type=="array" and len(pointer.nodes)==0 and value[1]==",":
+                    raise Exception("error in the syntax of the file")
+
+
                 print("se soluciono el waiting")
                 waiting_for_a_separation=False
 

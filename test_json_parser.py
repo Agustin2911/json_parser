@@ -21,6 +21,17 @@ JSON_FILES = [
     "data/json_file14.json",
     "data/json_file15.json",
     "data/json_file16.json",
+
+    "data/json_file17.json",
+    "data/json_file18.json",
+    "data/json_file19.json",
+    "data/json_file20.json",
+    "data/json_file21.json",
+    "data/json_file22.json",
+    "data/json_file23.json",
+    "data/json_file24.json",
+    "data/json_file25.json",
+    "data/json_file26.json",
 ]
 
 @pytest.mark.parametrize("path", JSON_FILES)
@@ -60,6 +71,16 @@ INVALID_JSON_FILES = [
     "data/invalid_json18.json",
     "data/invalid_json19.json",
     "data/invalid_json20.json",
+    "data/invalid_json21.json",
+    "data/invalid_json22.json",
+    "data/invalid_json23.json",
+    "data/invalid_json24.json",
+    "data/invalid_json25.json",
+    "data/invalid_json26.json",
+    "data/invalid_json27.json",
+    "data/invalid_json28.json",
+    "data/invalid_json29.json",
+    "data/invalid_json30.json",
 ]
 
 

@@ -1,0 +1,15 @@
+{
+  "profiles": [
+    {
+      "username": "nico123",
+      "active": true,
+      "scores": [15, 30, 45]
+    },
+    {
+      "username": "lara90",
+      "active": false,
+      "scores": []
+    }
+  ]
+}
+

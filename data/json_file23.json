@@ -1,0 +1,11 @@
+{
+  "weather": {
+    "day": "Monday",
+    "forecast": [
+      { "hour": 10, "temp": 18.5 },
+      { "hour": 14, "temp": 23.1 },
+      { "hour": 20, "temp": 17.8 }
+    ]
+  }
+}
+

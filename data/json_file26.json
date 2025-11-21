@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "UNLP",
+    "departments": [
+      {
+        "name": "Informatica",
+        "students": 3500
+      },
+      {
+        "name": "Ingenieria",
+        "students": 5000
+      }
+    ]
+  }
+}
+
