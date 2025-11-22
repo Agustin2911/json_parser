@@ -1,0 +1,11 @@
+{
+  "user": {
+    "id": 99,
+    "info": {
+      "name": "Lucas",
+      "languages": ["es", "en", "pt"]
+    }
+  },
+  "stats": [10, 20, 30, 40]
+}
+

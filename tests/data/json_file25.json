@@ -1,0 +1,11 @@
+{
+  "cart": {
+    "total": 350.75,
+    "products": [
+      { "id": 1, "q": 2 },
+      { "id": 2, "q": 1 }
+    ],
+    "paid": false
+  }
+}
+

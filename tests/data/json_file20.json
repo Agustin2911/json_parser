@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "volume": 80,
+    "brightness": 60,
+    "wifi": {
+      "ssid": "Casa",
+      "password": "1234abcd"
+    }
+  }
+}
+

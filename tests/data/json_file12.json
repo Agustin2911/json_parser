@@ -1,0 +1,13 @@
+{
+  "equipo": {
+    "miembros": [
+      {"nombre": "Ana", "edad": 25},
+      {"nombre": "Luis", "edad": 31},
+      {"nombre": "Sofía", "edad": 28}
+    ],
+    "proyecto": "Parser JSON",
+    "avance": 88
+  },
+  "tags": ["python", "parser", "json", "testing"]
+}
+

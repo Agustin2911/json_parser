@@ -1,0 +1,12 @@
+{
+  "videojuego": {
+    "titulo": "Elder Realms",
+    "generos": ["RPG", "Acción", "Aventura"],
+    "progreso": {
+      "nivel": 44,
+      "misiones": {"completadas": 120, "totales": 200}
+    }
+  },
+  "hora_juego": 56.7
+}
+

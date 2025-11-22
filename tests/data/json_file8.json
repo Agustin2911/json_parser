@@ -1,0 +1,20 @@
+{
+  "cursos": [
+    {
+      "nombre": "Python Avanzado",
+      "modulos": [
+        {"titulo": "Decoradores", "horas": 4},
+        {"titulo": "Metaclases", "horas": 3}
+      ]
+    },
+    {
+      "nombre": "Bases de Datos",
+      "modulos": [
+        {"titulo": "SQL", "horas": 5},
+        {"titulo": "Índices", "horas": 2}
+      ]
+    }
+  ],
+  "profesor": "Joa"
+}
+

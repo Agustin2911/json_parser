@@ -1,0 +1,14 @@
+{
+  "usuario": {
+    "id": 99,
+    "nombre": "Leonardo",
+    "roles": ["admin", "dev", "tester"],
+    "activo": true
+  },
+  "progreso": [10, 20, 30, 40],
+  "config": {
+    "tema": "oscuro",
+    "volumen": 0.85
+  }
+}
+

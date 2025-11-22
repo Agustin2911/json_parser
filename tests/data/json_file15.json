@@ -1,0 +1,10 @@
+{
+  "frutas": [
+    {"nombre": "Manzana", "cantidad": 12},
+    {"nombre": "Banana", "cantidad": 6},
+    {"nombre": "Naranja", "cantidad": 8}
+  ],
+  "stock_total": 26,
+  "expirado": null
+}
+

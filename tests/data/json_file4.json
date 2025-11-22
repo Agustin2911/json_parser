@@ -1,0 +1,13 @@
+{
+  "empresa": {
+    "nombre": "Tech SA",
+    "empleados": [
+      {"nombre": "Ana", "edad": 29, "senior": true},
+      {"nombre": "Luis", "edad": 34, "senior": false},
+      {"nombre": "Maria", "edad": 22, "senior": false}
+    ]
+  },
+  "oficinas": ["Buenos Aires", "Cordoba", "Rosario"],
+  "anio": 2025
+}
+
