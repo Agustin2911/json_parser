@@ -1,7 +1,7 @@
 {
   "usuario": {
     "id": 101,
-    "nombre": "Joa Romero",
+    "nombre": "jorge perez",
     "edad": 21,
     "activo": true,
     "roles": ["admin", "editor", "tester"]

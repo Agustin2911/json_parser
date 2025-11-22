@@ -29,7 +29,6 @@ class tokenizer:
                         self.open_quotes=not self.open_quotes
 
                         if not self.open_quotes:
-                            print(row[char+1]) 
 
                             self.tokens.append(["string",open_value])
                             open_value=""
@@ -55,8 +54,6 @@ class tokenizer:
                             open_value=""
 
                     elif  (row[char] =="f" or row[char] =="t" )and not self.open_quotes :
-                        print(row[char])
-                        print(not self.open_quotes)
                         self.open_boolean=True
 
 
@@ -86,7 +83,6 @@ class tokenizer:
                     if not self.open_quotes and not self.open_int and not self.open_boolean and not self.open_null:
                         
 
-                        print(row[char])
                         if row[char]=="[" or row[char]=="]" or row[char]=="{" or  row[char]=="}":
 
                             self.tokens.append(["simbol",row[char]])

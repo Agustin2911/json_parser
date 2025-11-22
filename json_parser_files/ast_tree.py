@@ -17,7 +17,6 @@ class ast:
         pointer=self.root
         
         for value in tokens:
-            print(value)
 
 
             if value[1]=="{":
@@ -41,7 +40,6 @@ class ast:
                 token_value=leaf(value[0],value[1])
            
             if (value[1]!="," and value[1]!="}") and waiting_for_a_separation:
-                print("entro al error")
                 raise Exception("error in the syntax of the file")
             
             elif (value[1]=="," or value[1]=="}") and waiting_for_a_separation:
@@ -50,7 +48,6 @@ class ast:
                     raise Exception("error in the syntax of the file")
 
 
-                print("se soluciono el waiting")
                 waiting_for_a_separation=False
 
 
@@ -83,7 +80,6 @@ class ast:
 
                 if token_value.type=="separation_sign":
                     raise Exception("error in the syntax of the json file")
-                print(token_value.type)
                 pointer=pointer.father
 
 
